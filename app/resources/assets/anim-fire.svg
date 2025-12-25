@@ -1,0 +1,340 @@
+<svg
+  width="100%"
+  height="100%"
+  viewBox="0 0 1920 1080"
+  xmlns="http://www.w3.org/2000/svg"
+  preserveAspectRatio="xMidYMid slice"
+>
+  <style>
+    :root {
+      --color-gold-500: hsl(39, 89%, 49%);
+      --color-gold-600: hsl(28, 76%, 44%);
+      --color-blue-500: hsl(230, 89%, 62%);
+      --color-blue-700: hsl(229, 64%, 46%);
+      --color-red-600: hsl(349, 71%, 52%);
+      --color-red-800: hsl(347, 75%, 35%);
+      --color-purple-600: hsl(261, 73%, 60%);
+      --color-purple-700: hsl(261, 51%, 44%);
+      --color-light-blue-400: hsl(189, 59%, 53%);
+      --color-light-blue-500: hsl(194, 58%, 42%);
+    }
+
+    /* Grund-Background */
+    .bg {
+      animation: bgShift 6s ease-in-out infinite alternate;
+    }
+    @keyframes bgShift {
+      0% {
+        stop-color: var(--color-blue-700);
+      }
+      50% {
+        stop-color: var(--color-purple-700);
+      }
+      100% {
+        stop-color: var(--color-red-800);
+      }
+    }
+
+    /* Kurze, harte Explosionen */
+    .explosion-core {
+      mix-blend-mode: screen;
+      animation: explosionCore 1s ease-out infinite;
+      transform-origin: center;
+    }
+    .explosion-core.e2 {
+      animation-delay: 0.35s;
+    }
+    .explosion-core.e3 {
+      animation-delay: 0.7s;
+    }
+
+    @keyframes explosionCore {
+      0% {
+        opacity: 0;
+        transform: scale(0.1);
+      }
+      5% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      15% {
+        opacity: 0.9;
+        transform: scale(1.5);
+      }
+      30% {
+        opacity: 0.4;
+        transform: scale(1.9);
+      }
+      60% {
+        opacity: 0.15;
+        transform: scale(2.1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(2.3);
+      }
+    }
+
+    /* Expanding shockwave-rings */
+    .shockwave {
+      fill: none;
+      stroke-width: 4;
+      mix-blend-mode: screen;
+      animation: shockwave 1s ease-out infinite;
+      transform-origin: center;
+    }
+    .shockwave.s2 {
+      animation-delay: 0.18s;
+    }
+    .shockwave.s3 {
+      animation-delay: 0.5s;
+    }
+
+    @keyframes shockwave {
+      0% {
+        opacity: 0.9;
+        transform: scale(0.2);
+        stroke-width: 7;
+      }
+      35% {
+        opacity: 1;
+        transform: scale(1.1);
+        stroke-width: 4;
+      }
+      70% {
+        opacity: 0.3;
+        transform: scale(1.8);
+        stroke-width: 2;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(2.4);
+        stroke-width: 1;
+      }
+    }
+
+    /* Funken / Partikel */
+    .spark {
+      mix-blend-mode: screen;
+      animation: sparkFly 1.1s ease-out infinite;
+      transform-origin: center;
+    }
+    .spark.s2 {
+      animation-delay: 0.15s;
+    }
+    .spark.s3 {
+      animation-delay: 0.3s;
+    }
+    .spark.s4 {
+      animation-delay: 0.45s;
+    }
+    .spark.s5 {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes sparkFly {
+      0% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0.3);
+      }
+      10% {
+        opacity: 1;
+      }
+      40% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--tx, 80px), var(--ty, -60px)) scale(0.1);
+      }
+    }
+
+    /* Kurzes globales Flackern beim Impact */
+    .flicker {
+      animation: flicker 0.18s infinite;
+    }
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.96; }
+      60% { opacity: 0.9; }
+    }
+  </style>
+
+  <defs>
+    <!-- Hintergrundgradient -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" class="bg" stop-color="var(--color-blue-700)" />
+      <stop offset="50%" stop-color="var(--color-purple-600)" />
+      <stop offset="100%" stop-color="var(--color-red-800)" />
+    </linearGradient>
+
+    <!-- Explosion-Cores -->
+    <radialGradient id="explosionGold" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--color-gold-500)" stop-opacity="1" />
+      <stop offset="45%" stop-color="var(--color-gold-600)" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="var(--color-red-800)" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="explosionRed" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--color-red-600)" stop-opacity="1" />
+      <stop offset="40%" stop-color="var(--color-red-800)" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="var(--color-red-800)" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="explosionBlue" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--color-light-blue-400)" stop-opacity="1" />
+      <stop offset="40%" stop-color="var(--color-light-blue-500)" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="var(--color-blue-700)" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Glow -->
+    <filter id="strongGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="35" result="blur" />
+      <feColorMatrix
+        in="blur"
+        type="matrix"
+        values="1 0 0 0 0
+                0 1 0 0 0
+                0 0 1 0 0
+                0 0 0 1 0"
+      />
+    </filter>
+  </defs>
+
+  <!-- Hintergrund -->
+  <rect width="100%" height="100%" fill="url(#bgGradient)" class="flicker" />
+
+  <!-- Zentrale große Explosion -->
+  <g filter="url(#strongGlow)">
+    <!-- Kern -->
+    <circle
+      class="explosion-core"
+      cx="960"
+      cy="540"
+      r="200"
+      fill="url(#explosionGold)"
+    />
+    <circle
+      class="explosion-core e2"
+      cx="960"
+      cy="540"
+      r="160"
+      fill="url(#explosionRed)"
+    />
+    <circle
+      class="explosion-core e3"
+      cx="960"
+      cy="540"
+      r="130"
+      fill="url(#explosionBlue)"
+    />
+
+    <!-- Shockwaves -->
+    <circle
+      class="shockwave"
+      cx="960"
+      cy="540"
+      r="210"
+      stroke="var(--color-gold-500)"
+    />
+    <circle
+      class="shockwave s2"
+      cx="960"
+      cy="540"
+      r="260"
+      stroke="var(--color-red-600)"
+    />
+    <circle
+      class="shockwave s3"
+      cx="960"
+      cy="540"
+      r="320"
+      stroke="var(--color-light-blue-400)"
+    />
+  </g>
+
+  <!-- Funken um die Explosion -->
+  <g>
+    <!-- Jeder Funke bekommt andere Richtung per CSS-Variablen -->
+    <circle
+      class="spark"
+      cx="960"
+      cy="540"
+      r="4"
+      fill="var(--color-gold-500)"
+      style="--tx: 180px; --ty: -90px;"
+    />
+    <circle
+      class="spark s2"
+      cx="960"
+      cy="540"
+      r="3"
+      fill="var(--color-red-600)"
+      style="--tx: -160px; --ty: -40px;"
+    />
+    <circle
+      class="spark s3"
+      cx="960"
+      cy="540"
+      r="3"
+      fill="var(--color-light-blue-400)"
+      style="--tx: 120px; --ty: 120px;"
+    />
+    <circle
+      class="spark s4"
+      cx="960"
+      cy="540"
+      r="2.5"
+      fill="var(--color-purple-600)"
+      style="--tx: -110px; --ty: 140px;"
+    />
+    <circle
+      class="spark s5"
+      cx="960"
+      cy="540"
+      r="3.5"
+      fill="var(--color-gold-600)"
+      style="--tx: 220px; --ty: 40px;"
+    />
+  </g>
+
+  <!-- Sekundäre Explosion links -->
+  <g filter="url(#strongGlow)">
+    <circle
+      class="explosion-core"
+      cx="520"
+      cy="360"
+      r="120"
+      fill="url(#explosionRed)"
+      style="animation-delay: 0.5s;"
+    />
+    <circle
+      class="shockwave"
+      cx="520"
+      cy="360"
+      r="130"
+      stroke="var(--color-red-600)"
+      style="animation-delay: 0.5s;"
+    />
+  </g>
+
+  <!-- Sekundäre Explosion rechts unten -->
+  <g filter="url(#strongGlow)">
+    <circle
+      class="explosion-core"
+      cx="1440"
+      cy="740"
+      r="100"
+      fill="url(#explosionBlue)"
+      style="animation-delay: 0.8s;"
+    />
+    <circle
+      class="shockwave"
+      cx="1440"
+      cy="740"
+      r="120"
+      stroke="var(--color-light-blue-500)"
+      style="animation-delay: 0.8s;"
+    />
+  </g>
+</svg>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors | Webdesign Riemer</title>
+    <link rel="stylesheet" href="./app/sources/css/stylesheet_index.css">
+</head>
+<body>
+    <header>
+        <h1>Rock Paper Scissors</h1>
+        <img src="./app/resources/assets/logo.svg" alt="Logo of rock paper scissors game">
+        <div class="score">
+            <label for="">Score</label>
+            <span id="score_player">0</span>
+        </div>
+    </header>
+    <main>
+        <section class="board-wrapper hidden" id="game_board">
+            <div class="board">
+                <img src="./app/resources/assets/bg-triangle.svg" alt="Background" id="img_board_background" class="background">
+                <button id="choice_paper" class="choice paper pos1" data-selection="paper">
+                    <img src="./app/resources/assets/icon-paper.svg" alt="Paper">
+                </button>
+                <button id="choice_scissors" class="choice scissors pos2" data-selection="scissors">
+                    <img src="./app/resources/assets/icon-scissors.svg" alt="Scissors">
+                </button>
+                <button id="choice_rock" class="choice rock pos3" data-selection="rock">
+                    <img src="./app/resources/assets/icon-rock.svg" alt="Rock">
+                </button>
+                <button id="choice_lizard" class="choice lizard pos4" data-selection="lizard">
+                    <img src="./app/resources/assets/icon-lizard.svg" alt="Lizard">
+                </button>
+                <button id="choice_spock" class="choice spock pos5" data-selection="spock">
+                    <img src="./app/resources/assets/icon-spock.svg" alt="Spock">
+                </button>
+            </div>
+        </section>
+
+        <section class="winning-wrapper hidden" id="winning_board">
+            <div class="box">
+                <h3>You picked</h3>
+                <button id="choice_selected_player" class="choice rock">
+                    <img src="./app/resources/assets/icon-scissors.svg" alt="Scissors">
+                </button>
+            </div>
+            <div class="box">
+                <h2 id="label_result">You win</h2>
+                <button class="btn_again" id="button_again">Play again</button>
+                <button class="btn_change_mode" id="button_change_mode">Change to Ultimate</button>
+            </div>
+            <div class="box">
+                <h3>house picked</h3>
+                <button id="choice_selected_computer" class="choice paper">
+                    <img src="./app/resources/assets/icon-scissors.svg" alt="Scissors">
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <div class="fire-overlay hide" id="fire_overlay"></div>
+
+    <button class="button_rules" id="button_rules">Rules</button>
+
+    <script src="./app/sources/js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+.winning-wrapper
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10rem;
+    padding: 0 5%;
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+    .winning-wrapper .box
+    {
+        text-align: center;
+        color: #fff;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+        .winning-wrapper .box h3
+        {
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 0.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .winning-wrapper .box h2
+        {
+            font-size: 3rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .winning-wrapper .box button.btn_again
+        {
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            background-color: #fff;
+            border: none;
+            border-radius: 0.5rem;
+            color: #000;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+
+        .winning-wrapper .box button.btn_change_mode
+        {
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            background-color: var(--color-navy-900);
+            border: none;
+            border-radius: 0.5rem;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .winning-wrapper .box .choice
+        {
+            transform: none !important;
+            position: relative !important;
+            right: 0 !important;
+            top: 0 !important;
+        }
+
+            .winning-wrapper .box .choice.winner
+            {
+                box-shadow: 0 0 5rem 5px rgba(251, 255, 0, 0.4);
+            }
+
+
+@media (max-width: 900px) 
+{
+    .winning-wrapper 
+    {
+        flex-wrap: wrap; 
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .winning-wrapper .box 
+    {
+        flex: 1 1 45% !important; 
+    }
+
+    .winning-wrapper .box:nth-child(1) 
+    {
+        order: 1;
+    }
+
+    .winning-wrapper .box:nth-child(3) 
+    {
+        order: 2;
+    }
+
+    .winning-wrapper .box:nth-child(2) 
+    {
+        flex: 1 1 100% !important;
+        order: 3; 
+        margin-top: 2rem;
+    }
+}
