@@ -120,7 +120,8 @@ class Game
         choice_selected_computer_image.src = `./app/resources/assets/icon-${this.computer_selection}.svg`;
         
         this.fire_overlay.classList.remove("hide");
-        this.playSound("sound_choice_" + this.player_selection + ".mp3", () => {
+        let random_sound_number = Math.floor(Math.random() * 3) + 1;
+        this.playSound("sound_choice_" + this.player_selection + "_" + random_sound_number + ".mp3", () => {
             this.evaluateWinner();
         });
     }
@@ -128,13 +129,14 @@ class Game
     evaluateWinner()
     {
         let result = "";
+        let random_sound_number = Math.floor(Math.random() * 3) + 1;
         if (this.player_selection === this.computer_selection)
         {
             result = "draw";
             this.label_result.textContent = "It's a draw";
             this.choice_selected_player.classList.remove("winner");
             this.choice_selected_computer.classList.remove("winner");
-            this.playSound("sound_draw.wav");
+            this.playSound("sound_draw_" + random_sound_number + ".mp3");
         }
         else if ((this.player_selection === "rock" && (this.computer_selection === "scissors" || this.computer_selection === "lizard")) ||
                  (this.player_selection === "paper" && (this.computer_selection === "rock" || this.computer_selection === "spock")) ||
@@ -147,7 +149,7 @@ class Game
             this.label_result.textContent = "You win";
             this.choice_selected_player.classList.add("winner");
             this.choice_selected_computer.classList.remove("winner");
-            this.playSound("sound_win.wav");
+            this.playSound("sound_win_" + random_sound_number + ".mp3");
         }
         else
         {
@@ -156,7 +158,7 @@ class Game
             this.label_result.textContent = "You lose";
             this.choice_selected_computer.classList.add("winner");
             this.choice_selected_player.classList.remove("winner");
-            this.playSound("sound_lose.wav");
+            this.playSound("sound_lose_" + random_sound_number + ".mp3");
         }
 
         this.winning_board.classList.remove('hidden');
