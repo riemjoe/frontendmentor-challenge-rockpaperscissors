@@ -9,7 +9,7 @@ class Game
 
         this.game_board = document.getElementById("game_board");
         this.winning_board = document.getElementById("winning_board");
-        this.fire_overlay = document.getElementById("fire_overlay");
+        this.fight_overlay = document.querySelector(".fight-overlay");
         this.label_result = document.getElementById("label_result");
 
         this.img_board_background = document.getElementById("img_board_background");
@@ -57,6 +57,8 @@ class Game
         this.choice_scissors.addEventListener("click", () => { this.takeTurn("scissors"); });
         this.choice_lizard.addEventListener("click", () => { this.takeTurn("lizard"); });
         this.choice_spock.addEventListener("click", () => { this.takeTurn("spock"); });
+
+        this.fight_overlay.classList.add("hide");
     }
 
     buildMode(mode)
@@ -90,7 +92,6 @@ class Game
             this.setChoicePosition(this.choice_rock, "pos8");
         }
 
-        this.fire_overlay.classList.add("hide");
     }
 
     setChoicePosition(element, position, hidden = false)
@@ -119,15 +120,33 @@ class Game
         choice_selected_player_image.src = `./app/resources/assets/icon-${this.player_selection}.svg`;
         choice_selected_computer_image.src = `./app/resources/assets/icon-${this.computer_selection}.svg`;
         
-        this.fire_overlay.classList.remove("hide");
         let random_sound_number = Math.floor(Math.random() * 3) + 1;
         this.playSound("sound_choice_" + this.player_selection + "_" + random_sound_number + ".mp3", () => {
             this.evaluateWinner();
         });
+        this.showFightOverlay(this.player_selection, this.computer_selection);
+    }
+
+    showFightOverlay(player_choice, computer_choice)
+    {
+        const playerImage = this.fight_overlay.querySelector("#fight_player");
+        const computerImage = this.fight_overlay.querySelector("#fight_computer");
+
+        // Set idle
+        playerImage.src = `./app/resources/player/player_idle.webp`;
+        computerImage.src = `./app/resources/computer/computer_idle.webp`;
+        this.fight_overlay.classList.remove("hide");
+
+        setTimeout(() => {
+            // Set fighting animation
+            playerImage.src = `./app/resources/player/player_${player_choice}.webp`;
+            computerImage.src = `./app/resources/computer/computer_${computer_choice}.webp`;
+        }, 1000);
     }
 
     evaluateWinner()
     {
+        this.fight_overlay.classList.add("hide");
         let result = "";
         let random_sound_number = Math.floor(Math.random() * 3) + 1;
         if (this.player_selection === this.computer_selection)
@@ -163,7 +182,6 @@ class Game
 
         this.winning_board.classList.remove('hidden');
         this.game_board.classList.add('hidden');
-        this.fire_overlay.classList.add("hide");
 
         this.updateScore();
     }
